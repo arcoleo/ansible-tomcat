@@ -22,7 +22,7 @@
   group:
     state: present
     name: "{{ item.group|default(tomcat_default_user_group) }}"
-  with_items: tomcat_instances
+  with_items: "{{ tomcat_instances }}"
   become: true
   tags: 
     - tomcat
