@@ -57,14 +57,14 @@
 - name: Download Tomcat
   get_url: 
     url: "{{ tomcat_download_url }}"
-    dest: "/opt/{{ tomcat_redis_filename }}"
+    dest: "{{ tomcat_install_base }}/{{ tomcat_redis_filename }}"
   tags:
     - tomcat
  
 
 - name: Extract Tomcat installation files to catalina home
   command: tar
-      -xzf /opt
+      -xzf /opt/{{ tomcat_redis_filename }}
       -C {{ tomcat_env_catalina_home }}
       --strip-components 1
   args:
