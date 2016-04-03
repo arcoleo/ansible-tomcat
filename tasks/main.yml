@@ -112,7 +112,7 @@
       {{ item.0.path | default(tomcat_default_instance_path) }}/catalina/{{ item.0.name }}/conf/{{ item.1 }}
   with_nested:
     - "{{ tomcat_instances }}"
-    - "({{ tomcat_registered_conf_files }} | default({})).stdout_lines | default([])"
+    - "{{ ( tomcat_registered_conf_files | default({})).stdout_lines | default([]) }}"
   args:
     creates: "{{ item.0.path|default(tomcat_default_instance_path) }}/catalina/{{ item.0.name }}/conf/{{ item.1 }}"
   #when: tomcat_fact_is_not_initial_check_mode
