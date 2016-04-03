@@ -2,6 +2,8 @@
 
 Install Tomcat with configurable Catalina instances.
 
+Purpose is to install JSPWiki.
+
 ## Compatibility
 
 ### 1.3.0

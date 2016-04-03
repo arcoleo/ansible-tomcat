@@ -1,7 +1,6 @@
 ---
 - hosts: all
   roles:
-    - { role: silpion.java }
     - { role: ansible-tomcat }
   tasks:
     - name: Package ROOT webapp from Tomcat installation
