@@ -128,7 +128,7 @@
     owner: "{{ item.user|default(tomcat_default_user_name) }}"
     group: "{{ item.group|default(tomcat_default_user_group) }}"
     mode: 0640
-  with_items: tomcat_instances
+  with_items: "{{ tomcat_instances }}"
   register: tomcat_registered_install_server_xml
   become: true
   tags: 
