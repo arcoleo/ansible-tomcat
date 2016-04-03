@@ -11,11 +11,11 @@
       - ansible_distribution in tomcat_supported_distributions
 
 
-- name: Include assets persistency tasks
-  tags: tomcat
-  include: ../../silpion.lib/tasks/datapersistency.yml
-  vars:
-    include_tags: tomcat
+# - name: Include assets persistency tasks
+#   tags: tomcat
+#   include: ../../silpion.lib/tasks/datapersistency.yml
+#   vars:
+#     include_tags: tomcat
 
 
 - name: Create Tomcat group(s)
