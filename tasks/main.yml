@@ -82,8 +82,8 @@
     group: "{{ item.0.group | default(tomcat_default_user_group) }}"
     mode: 0755
   with_nested:
-    - tomcat_instances
-    - tomcat_instance_dirs
+    - "{{ tomcat_instances }}"
+    - "{{ tomcat_instance_dirs }}"
   become: true
   tags: 
     - tomcat
