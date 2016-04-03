@@ -123,10 +123,10 @@
 
 - name: Install instance server.xml
   template:
-    src: "{{ item.server_xml_template|default(tomcat_default_server_xml_template) }}"
-    dest: "{{ item.path|default(tomcat_default_instance_path) }}/catalina/{{ item.name }}/conf/server.xml"
-    owner: "{{ item.user|default(tomcat_default_user_name) }}"
-    group: "{{ item.group|default(tomcat_default_user_group) }}"
+    src: "{{ item.server_xml_template | default(tomcat_default_server_xml_template) }}"
+    dest: "{{ item.path | default(tomcat_default_instance_path) }}/catalina/{{ item.name }}/conf/server.xml"
+    owner: "{{ item.user | default(tomcat_default_user_name) }}"
+    group: "{{ item.group | default(tomcat_default_user_group) }}"
     mode: 0640
   with_items: "{{ tomcat_instances }}"
   register: tomcat_registered_install_server_xml
@@ -137,12 +137,12 @@
 
 - name: Install instance web.xml
   template:
-    src: "{{ item.web_xml_template|default(tomcat_default_web_xml_template) }}"
-    dest: "{{ item.path|default(tomcat_default_instance_path) }}/catalina/{{ item.name }}/conf/web.xml"
-    owner: "{{ item.user|default(tomcat_default_user_name) }}"
-    group: "{{ item.group|default(tomcat_default_user_group) }}"
+    src: "{{ item.web_xml_template | default(tomcat_default_web_xml_template) }}"
+    dest: "{{ item.path | default(tomcat_default_instance_path) }}/catalina/{{ item.name }}/conf/web.xml"
+    owner: "{{ item.user | default(tomcat_default_user_name) }}"
+    group: "{{ item.group | default(tomcat_default_user_group) }}"
     mode: 0640
-  with_items: tomcat_instances
+  with_items: "{{ tomcat_instances }}"
   register: tomcat_registered_install_web_xml
   become: true
   tags: 
