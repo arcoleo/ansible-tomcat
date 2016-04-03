@@ -64,7 +64,7 @@
 
 - name: Extract Tomcat installation files to catalina home
   command: tar
-      -xzf /opt/{{ tomcat_redis_filename }}
+      -xzf /opt
       -C {{ tomcat_env_catalina_home }}
       --strip-components 1
   args:
