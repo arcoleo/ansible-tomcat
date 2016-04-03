@@ -36,7 +36,7 @@
     group: "{{ item.group | default(tomcat_default_user_group) }}"
     createhome: true
     comment: "Tomcat service user"
-  with_items: tomcat_instances
+  with_items: "{{ tomcat_instances }}"
   become: true
   tags: 
     - tomcat
@@ -53,6 +53,14 @@
   tags: 
     - tomcat
 
+
+- name: Download Tomcat
+  get_url: 
+    url: "{{ tomcat_download_url }}"
+    dest: "/opt/{{ tomcat_redis_filename }}"
+  tags:
+    - tomcat
+ 
 
 - name: Extract Tomcat installation files to catalina home
   command: tar
