@@ -1,9 +1,5 @@
 ---
 
-dependencies:
-  - src: https://github.com/silpion/ansible-util
-    name: silpion.util
-
 galaxy_info:
   author: David Arcoleo
   description: Tomcat installation for JSPWiki
