@@ -1,6 +1,6 @@
 ---
 
-- include_vars: "../vars/version/{{ tomcat_version }}.yml"
+- include_vars: "../vars/versions/{{ tomcat_version }}.yml"
 
 # Main list of tasks to be executed.
 #
