@@ -3,7 +3,7 @@
 - include_vars: "../vars/versions/{{ tomcat_version }}.yml"
 
 - include_vars: ../service/systemd.yml
-  when: "{{ ansible_distribution }} is 'Ubuntu"
+  when: "{{ ansible_distribution }} == 'Ubuntu'"
 # Main list of tasks to be executed.
 #
 #   Fail the play if it runs on an unsupported platform.
