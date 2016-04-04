@@ -191,7 +191,7 @@
     group: 0
     mode: "{{ tomcat_service_file_mode }}"
   with_items: "{{ tomcat_instances }}"
-  when: tomcat_fact_is_not_initial_check_mode
+  #when: tomcat_fact_is_not_initial_check_mode
   register: tomcat_registered_install_tomcat_service
   become: true
   tags: 
