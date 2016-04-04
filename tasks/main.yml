@@ -16,6 +16,8 @@
 #   include: ../../silpion.lib/tasks/datapersistency.yml
 #   vars:
 #     include_tags: tomcat
+# - name: Include version
+#   include: ../
 
 
 - name: Create Tomcat group(s)
