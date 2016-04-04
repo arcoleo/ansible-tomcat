@@ -2,12 +2,8 @@
 
 - include_vars: "../vars/versions/{{ tomcat_version }}.yml"
 
-- hosts: all
-  tasks:
-     - group_by: key=os_{{ ansible_distribution }}
-
-- hosts: os_Ubuntu
-  include_vars: ../service/systemd.yml
+- include_vars: ../service/systemd.yml
+  when: "{{ ansible_distribution }} is 'Ubuntu"
 # Main list of tasks to be executed.
 #
 #   Fail the play if it runs on an unsupported platform.
