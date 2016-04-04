@@ -2,8 +2,6 @@
 
 - include_vars: "../vars/versions/{{ tomcat_version }}.yml"
 
-- include_vars: ../vars/service/systemd.yml
-  when: ansible_distribution == 'Ubuntu'
 # Main list of tasks to be executed.
 #
 #   Fail the play if it runs on an unsupported platform.
@@ -156,12 +154,20 @@
 
 
 # Manage system services
+# - name: Configure service management
+#   when: ansible_local.util.init.system is defined
+#   include_vars: "service/{{ ansible_local.util.init.system }}.yml"
+#   tags: 
+#     - tomcat
+#     - tomcat_service
+
 - name: Configure service management
-  when: ansible_local.util.init.system is defined
-  include_vars: "service/{{ ansible_local.util.init.system }}.yml"
-  tags: 
+  include_vars: ../vars/service/systemd.yml
+  when: ansible_distribution == 'Ubuntu'
+  tags:
     - tomcat
     - tomcat_service
+
 
 
 #   systemd requires to use separate environment files per instance
