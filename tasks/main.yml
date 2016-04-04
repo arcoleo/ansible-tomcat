@@ -247,7 +247,6 @@
 #       - tomcat service name in question (item.service_name) with sensible default
 #       - None
 - name: Register instances requiring restart
-  tags: tomcat
   register: tomcat_registered_instances_requiring_restart
   with_items:
     - "{{ (tomcat_registered_install_server_xml|default({})).results|default({}) }}"
@@ -257,23 +256,30 @@
 #  when: tomcat_fact_is_not_initial_check_mode
   set_fact:
     tomcat_fact_requires_restart_item: "{{ item.item.service_name|default(tomcat_default_service_name) if item.item is defined and item.changed else 'None' }}"
+  tags: 
+    - tomcat
+    - tomcat_service
 
 
 #     This one maps all services in question from previous task into an iterable list
 #       while stripping services named 'None'
-# - name: Configure instances requiring restart
-#   tags: tomcat
-#   when: tomcat_fact_is_not_initial_check_mode
-#   set_fact:
-#     tomcat_facts_requires_restart: "{{ tomcat_registered_instances_requiring_restart.results|map(attribute='ansible_facts.tomcat_fact_requires_restart_item')|list|unique|difference(['None']) }}"
+- name: Configure instances requiring restart
+#  when: tomcat_fact_is_not_initial_check_mode
+  set_fact:
+    tomcat_facts_requires_restart: "{{ tomcat_registered_instances_requiring_restart.results|map(attribute='ansible_facts.tomcat_fact_requires_restart_item')|list|unique|difference(['None']) }}"
+  tags: 
+    - tomcat
+    - tomcat_service
 
 
 #     We can now safely notify the service restart handler which in turn just loops
 #       over all items in the resulting list 'tomcat_facts_requires_restart'.
-# - name: Trigger service handler
-#   tags: tomcat
-#   notify: service restart tomcat
-#   command: /bin/true
+- name: Trigger service handler
+  notify: service restart tomcat
+  command: /bin/true
+  tags: 
+    - tomcat
+    - tomcat_service
 
 
 # - name: Include local facts tasks
