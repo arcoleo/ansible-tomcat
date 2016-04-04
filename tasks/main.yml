@@ -254,7 +254,7 @@
     - "{{ (tomcat_registered_install_web_xml|default({})).results|default({}) }}"
     - "{{ (tomcat_registered_install_instance_environment_files|default({})).results|default({}) }}"
     - "{{ (tomcat_registered_install_tomcat_service|default({})).results|default({}) }}"
-  when: tomcat_fact_is_not_initial_check_mode
+#  when: tomcat_fact_is_not_initial_check_mode
   set_fact:
     tomcat_fact_requires_restart_item: "{{ item.item.service_name|default(tomcat_default_service_name) if item.item is defined and item.changed else 'None' }}"
 
