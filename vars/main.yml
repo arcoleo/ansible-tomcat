@@ -33,4 +33,4 @@ tomcat_env_catalina_home: "{{ tomcat_install_base }}/apache-tomcat-{{ tomcat_ver
 # gather role version for facts
 tomcat_role_version: "{{ lookup('file', role_path + '/VERSION') }}"
 
-- include: "../vars/version/{{ tomcat_version }}.yml"
+- include_vars: "../vars/version/{{ tomcat_version }}.yml"
