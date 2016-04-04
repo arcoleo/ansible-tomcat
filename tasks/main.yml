@@ -180,6 +180,7 @@
     - tomcat
     - tomcat_service
 
+- debug: var="{{ ansible_os_family }}"
 
 #   install a service file for tomcat
 #     systemd by default uses a templated service (one unit, many instances)
