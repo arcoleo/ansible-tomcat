@@ -2,7 +2,7 @@
 
 - include_vars: "../vars/versions/{{ tomcat_version }}.yml"
 
-- include_vars: ../service/systemd.yml
+- include_vars: ../vars/service/systemd.yml
   when: ansible_distribution == 'Ubuntu'
 # Main list of tasks to be executed.
 #
