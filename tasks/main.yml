@@ -1,5 +1,7 @@
 ---
 
+- include_vars: "../vars/version/{{ tomcat_version }}.yml"
+
 # Main list of tasks to be executed.
 #
 #   Fail the play if it runs on an unsupported platform.
