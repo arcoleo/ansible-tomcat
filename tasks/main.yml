@@ -182,14 +182,12 @@
     - tomcat
     - tomcat_service
 
-- debug: var="{{ ansible_distribution }}"
-
 #   install a service file for tomcat
 #     systemd by default uses a templated service (one unit, many instances)
 - name: Install tomcat services
   template:
-    src: "{{ item.service_template|default(tomcat_default_service_template) }}"
-    dest: "{{ tomcat_service_dir }}/{{ item.service_file|default(tomcat_default_service_file) }}"
+    src: "{{ item.service_template | default(tomcat_default_service_template) }}"
+    dest: "{{ tomcat_service_dir }}/{{ item.service_file | default(tomcat_default_service_file) }}"
     owner: 0
     group: 0
     mode: "{{ tomcat_service_file_mode }}"
@@ -207,8 +205,9 @@
   command: systemctl daemon-reload
   when:
     - tomcat_registered_install_tomcat_service.changed
-    - ansible_local.util.init.system is defined
-    - ansible_local.util.init.system == 'systemd'
+    - ansible_distribution == 'Ubuntu'
+    # - ansible_local.util.init.system is defined
+    # - ansible_local.util.init.system == 'systemd'
   changed_when: false
   failed_when: false
   become: true
