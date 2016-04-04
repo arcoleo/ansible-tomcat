@@ -226,8 +226,8 @@
   service:
     state: started
     enabled: true
-    name: "{{ item.service_name|default(tomcat_default_service_name) }}"
-  with_items: tomcat_instances
+    name: "{{ item.service_name | default(tomcat_default_service_name) }}"
+  with_items: "{{ tomcat_instances }}"
   when: tomcat_fact_is_not_initial_check_mode
   become: true
   tags: 
