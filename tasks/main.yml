@@ -172,7 +172,7 @@
     owner: "{{ item.user|default(tomcat_default_user_name) }}"
     group: "{{ item.group|default(tomcat_default_user_group) }}"
     mode: 0644
-  with_items: tomcat_instances
+  with_items: "{{ tomcat_instances }}"
   when:
     - ansible_local.util.init.system is defined
     - ansible_local.util.init.system == 'systemd'
