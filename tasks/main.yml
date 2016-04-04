@@ -174,14 +174,14 @@
 - name: Install instance environment files
   template:
     src: service_systemd_envfile.j2
-    dest: "{{ item.path|default(tomcat_default_instance_path) }}/catalina/{{ item.name }}/.systemd.conf"
-    owner: "{{ item.user|default(tomcat_default_user_name) }}"
-    group: "{{ item.group|default(tomcat_default_user_group) }}"
+    dest: "{{ item.path | default(tomcat_default_instance_path) }}/catalina/{{ item.name }}/.systemd.conf"
+    owner: "{{ item.user | default(tomcat_default_user_name) }}"
+    group: "{{ item.group | default(tomcat_default_user_group) }}"
     mode: 0644
   with_items: "{{ tomcat_instances }}"
-  when:
-    - ansible_local.util.init.system is defined
-    - ansible_local.util.init.system == 'systemd'
+  when: ansible_distribution == 'Ubuntu'
+    # - ansible_local.util.init.system is defined
+    # - ansible_local.util.init.system == 'systemd'
   register: tomcat_registered_install_instance_environment_files
   become: true
   tags: 
